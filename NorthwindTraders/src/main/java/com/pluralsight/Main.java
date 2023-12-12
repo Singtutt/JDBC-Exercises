@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        // Database (/Query) Information
+        // Database (/Query) Information.
         Connection connection = null;
         String url = "jdbc:mysql://localhost:3306/northwind";
         String username = "root";
@@ -16,7 +16,7 @@ public class Main {
             int option;
 
             do {
-                // Menu Display
+                // Menu Display.
                 System.out.println("""
                         -Main Menu-
                         What would you like to do?
@@ -28,16 +28,18 @@ public class Main {
 
                 switch (option) {
                     case 1:
+                        //  "Display All Products"
                         option1(connection);
                         break;
                     case 2:
+                        // "Display All Customers"
                         option2(connection);
                         break;
                     case 0:
-                        System.out.println("Exiting now...");
+                        System.out.println("Exiting now... Have A Good Day!");
                         break;
                     default:
-                        System.out.println("Invalid Option. Redirecting...");
+                        System.out.println("Invalid Option. Redirecting...\n");
                         break;
                 }
             } while (option != 0);
@@ -57,7 +59,7 @@ public class Main {
         }
     }
 
-    //  Display all Products
+    //  Display all Product Information.
     private static void option1(Connection connection) {
         String query = "SELECT ProductID, ProductName, UnitPrice, UnitsInStock FROM Products";
 
@@ -76,15 +78,15 @@ public class Main {
 
                 System.out.printf("%-10d %-40s %-10.2f %-10d%n", id, name, price, stock);
             }
-            System.out.println("\n\t\t\t\t-----Redirecting to Main Menu-----\n");
             resultSet.close();
+            System.out.println("\n\t\t\t\t-----Redirecting to Main Menu-----\n");
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    // 
+    // Display all Customer Information.
     private static void option2(Connection connection) {
         String query = "SELECT ContactName, CompanyName, City, Country, Phone FROM Customers ORDER BY Country";
 
@@ -104,8 +106,8 @@ public class Main {
 
                 System.out.printf("%-25s %-37s %-20s %-15s %-15s%n", nameContact, nameCompany, city, country, phone);
             }
-            System.out.println("\n\t\t\t\t\t\t\t\t\t\t------Redirecting to Main Menu-----\n");
             resultSet.close();
+            System.out.println("\n\t\t\t\t\t\t\t\t\t\t------Redirecting to Main Menu-----\n");
 
         } catch (SQLException e) {
             e.printStackTrace();
